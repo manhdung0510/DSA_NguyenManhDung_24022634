@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1760956766 source:c:\users\admin\onedrive\documents\tronglinh\dsa\th\24022678_daotronglinh\src\week4\symboltable\main.cpp
+	<iostream>
+	"DefSymbolTable.h"
+
+1760956849 c:\users\admin\onedrive\documents\tronglinh\dsa\th\24022678_daotronglinh\src\week4\symboltable\defsymboltable.h
+	<iostream>
+

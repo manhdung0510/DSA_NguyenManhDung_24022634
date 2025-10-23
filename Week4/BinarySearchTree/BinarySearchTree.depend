@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1760952259 source:c:\users\admin\onedrive\documents\tronglinh\dsa\th\24022678_daotronglinh\src\week4\binarysearchtree\main.cpp
+	"DefBST.h"
+
+1760952259 c:\users\admin\onedrive\documents\tronglinh\dsa\th\24022678_daotronglinh\src\week4\binarysearchtree\defbst.h
+	<iostream>
+
