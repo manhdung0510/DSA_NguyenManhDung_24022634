@@ -1,14 +1,12 @@
 #include <iostream>
 using namespace std;
 
-/* Cấu trúc của một nút trong cây nhị phân */
 struct Node {
     int data;
     Node* left;
     Node* right;
 };
 
-/* Hàm tạo một nút mới */
 Node* newNode(int data) {
     Node* node = new Node();
     node->data = data;
@@ -17,7 +15,6 @@ Node* newNode(int data) {
     return node;
 }
 
-/* Duyệt cây theo thứ tự Inorder: Trái -> Gốc -> Phải */
 void Inorder(struct Node* node) {
     if (node == NULL) return;
     Inorder(node->left);
@@ -25,7 +22,6 @@ void Inorder(struct Node* node) {
     Inorder(node->right);
 }
 
-/* Duyệt cây theo thứ tự Preorder: Gốc -> Trái -> Phải */
 void Preorder(struct Node* node) {
     if (node == NULL) return;
     cout << node->data << " ";
@@ -33,7 +29,6 @@ void Preorder(struct Node* node) {
     Preorder(node->right);
 }
 
-/* Duyệt cây theo thứ tự Postorder: Trái -> Phải -> Gốc */
 void Postorder(struct Node* node) {
     if (node == NULL) return;
     Postorder(node->left);
