@@ -1,48 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Edge {
-    int u, v, w;
-};
-
-int parent[100], rnk[100];
-
-int findSet(int u) {
-    if(parent[u] == u) return u;
-    return parent[u] = findSet(parent[u]);
-}
-
-void unionSet(int u, int v) {
-    u = findSet(u);
-    v = findSet(v);
-    if(u == v) return;
-    if(rnk[u] < rnk[v]) swap(u, v);
-    parent[v] = u;
-    if(rnk[u] == rnk[v]) rnk[u]++;
-}
-
+const int INF = 1e9;
 int main() {
     int n, m;
     cin >> n >> m;
 
-    vector<Edge> edges(m);
-    for(int i=0;i<m;i++)
-        cin >> edges[i].u >> edges[i].v >> edges[i].w;
+    int a[100][100];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            a[i][j] = INF;
 
-    sort(edges.begin(), edges.end(), [](Edge a, Edge b){
-        return a.w < b.w;
-    });
+    for (int i = 0; i < m; i++) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        a[u][v] = a[v][u] = w;
+    }
 
-    for(int i=0;i<n;i++) parent[i] = i;
+    int comp[100];
+    for (int i = 0; i < n; i++)
+        comp[i] = i;
 
     int mst = 0;
-    for(auto e : edges) {
-        if(findSet(e.u) != findSet(e.v)) {
-            mst += e.w;
-            unionSet(e.u, e.v);
+    int edges = 0;
+
+    while (edges < n - 1) {
+
+        int min_w = INF;
+        int u_best = -1, v_best = -1;
+
+        for (int u = 0; u < n; u++) {
+            for (int v = u + 1; v < n; v++) {
+                if (a[u][v] < min_w && comp[u] != comp[v]) {
+                    min_w = a[u][v];
+                    u_best = u;
+                    v_best = v;
+                }
+            }
         }
+        mst += min_w;
+        edges++;
+
+        int old_comp = comp[v_best];
+        int new_comp = comp[u_best];
+
+        for (int i = 0; i < n; i++)
+            if (comp[i] == old_comp)
+                comp[i] = new_comp;
     }
 
     cout << "MST = " << mst;
 }
-
